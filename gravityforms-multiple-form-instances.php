@@ -113,10 +113,13 @@ class Gravity_Forms_Multiple_Form_Instances {
       'gf_global["number_formats"][' . $form['id'] . ']'                  => 'gf_global["number_formats"][' . $random_id . ']',
       'gform_next_button_' . $form['id'] . '_'                            => 'gform_next_button_' . $random_id . '_',
       $hidden_field                                                       => "<input type='hidden' name='gform_random_id' value='" . $random_id . "' />" . $hidden_field,
-      //
       'gform_submit_button_' . $form['id']                                => 'gform_submit_button_' . $random_id,
       "'gform_post_render', [" . $form['id'] . ", 1])"                    => "'gform_post_render', [" . $random_id . ", 1])",
       'data-js-reload="field_' . $form['id'] . '_'                        => 'data-js-reload="field_' . $random_id . '_',
+      'gform_target_page_number_' . $form['id']                           => 'gform_target_page_number_' . $random_id,
+      'gform_source_page_number_' . $form['id']                           => 'gform_source_page_number_' . $random_id,
+      "name='input_"                                                      => "name='input_" . $random_id . '_',
+      'gfield_description_' . $form['id'] . '_'                           => 'gfield_description_' . $random_id . '_'
     );
 
     // allow addons & plugins to add additional find & replace strings
