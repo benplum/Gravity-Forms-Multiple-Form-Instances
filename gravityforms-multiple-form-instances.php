@@ -3,7 +3,7 @@
 Plugin Name: Gravity Forms: Multiple Form Instances
 Description: Allows multiple instances of the same form to be run on a single page when using AJAX. Working fork of https://github.com/tyxla/Gravity-Forms-Multiple-Form-Instances.
 Plugin URI: https://github.com/benplum/Gravity-Forms-Multiple-Form-Instances
-Version: 2.0.3
+Version: 2.0.4
 Author: Ben Plum
 Author URI: https://benplum.com
 License: GPLv2 or later
@@ -88,7 +88,7 @@ class Gravity_Forms_Multiple_Form_Instances {
       '#gform_wrapper_' . $form['id']                                     => '#gform_wrapper_' . $random_id,
 
       '"gform_wrapper_' . $form['id'] . '"'                               => '"gform_wrapper_' . $random_id . '"', // new
-      '"gform_visibility_test_' . $form['id'] . '"'                               => '"gform_visibility_test_' . $random_id . '"', // new
+      '"gform_visibility_test_' . $form['id'] . '"'                       => '"gform_visibility_test_' . $random_id . '"', // new
 
       '#gform_' . $form['id']                                             => '#gform_' . $random_id,
       "trigger('gform_post_render', [" . $form['id']                      => "trigger('gform_post_render', [" . $random_id,
@@ -100,6 +100,11 @@ class Gravity_Forms_Multiple_Form_Instances {
       'gforms_confirmation_message_' . $form['id']                        => 'gforms_confirmation_message_' . $random_id,
       'gform_confirmation_message_' . $form['id']                         => 'gform_confirmation_message_' . $random_id,
       'if(formId == ' . $form['id'] . ')'                                 => 'if(formId == ' . $random_id . ')',
+
+      'formId: "' . $form['id'] . '",'                                    => 'formId: "' . $random_id . '",',
+      'formId: ' . $form['id']                                            => 'formId: ' . $random_id,
+      "gform_post_render', [" . $form['id']                               => "gform_post_render', [" . $random_id,
+
       "window['gf_form_conditional_logic'][" . $form['id'] . ']'          => "window['gf_form_conditional_logic'][" . $random_id . ']',
       "trigger('gform_post_conditional_logic', [" . $form['id'] . ','     => "trigger('gform_post_conditional_logic', [" . $random_id . ',',
       'gformShowPasswordStrength("input_' . $form['id'] . '_'             => 'gformShowPasswordStrength("input_' . $random_id . '_',
