@@ -3,7 +3,7 @@
 Plugin Name: Gravity Forms: Multiple Form Instances
 Description: Allows multiple instances of the same form to be run on a single page when using AJAX. Working fork of https://github.com/tyxla/Gravity-Forms-Multiple-Form-Instances.
 Plugin URI: https://github.com/benplum/Gravity-Forms-Multiple-Form-Instances
-Version: 2.0.4
+Version: 2.0.5
 Author: Ben Plum
 Author URI: https://benplum.com
 License: GPLv2 or later
@@ -82,8 +82,8 @@ class Gravity_Forms_Multiple_Form_Instances {
       "id='input_" . $form['id'] . '_'                                    => "id='input_" . $random_id . '_',
       "id='choice_" . $form['id'] . '_'                                   => "id='choice_" . $random_id . '_',
       "'gform_submit_button_" . $form['id'] . "'"                         => "'gform_submit_button_" . $random_id . "'",
-      '"gf_submitting_' . $form['id'] . '"'                               => '"gf_submitting_' . $random_id . '"',
-      "'gf_submitting_" . $form['id'] . "'"                               => "'gf_submitting_" . $random_id . "'",
+      // '"gf_submitting_' . $form['id'] . '"'                               => '"gf_submitting_' . $random_id . '"',
+      // "'gf_submitting_" . $form['id'] . "'"                               => "'gf_submitting_" . $random_id . "'",
       '#gform_ajax_frame_' . $form['id']                                  => '#gform_ajax_frame_' . $random_id,
       '#gform_wrapper_' . $form['id']                                     => '#gform_wrapper_' . $random_id,
 
@@ -127,12 +127,6 @@ class Gravity_Forms_Multiple_Form_Instances {
       'data-js-reload="field_' . $form['id'] . '_'                        => 'data-js-reload="field_' . $random_id . '_',
 
       ' gform_wrapper'                                                    => ' gform_wrapper gform_wrapper_original_id_' . $form['id'],
-
-      'name="is_submit_' . $form['id']                => 'name="is_submit_' . $random_id,
-      'name="state_' . $form['id']                    => 'name="state_' . $random_id,
-      'name="gform_target_page_number_' . $form['id'] => 'name="gform_target_page_number_' . $random_id,
-      'name="gform_source_page_number_' . $form['id'] => 'name="gform_source_page_number_' . $random_id,
-      '#gform_source_page_number_' . $form['id']      => '#gform_source_page_number_' . $random_id
     );
 
     // allow addons & plugins to add additional find & replace strings
