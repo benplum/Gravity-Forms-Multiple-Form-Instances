@@ -3,7 +3,7 @@
 Plugin Name: Gravity Forms: Multiple Form Instances
 Description: Allows multiple instances of the same form to be run on a single page when using AJAX. Working fork of https://github.com/tyxla/Gravity-Forms-Multiple-Form-Instances.
 Plugin URI: https://github.com/benplum/Gravity-Forms-Multiple-Form-Instances
-Version: 2.0.7
+Version: 2.0.8
 Author: Ben Plum
 Author URI: https://benplum.com
 License: GPLv2 or later
@@ -39,7 +39,6 @@ class Gravity_Forms_Multiple_Form_Instances {
     // hook the HTML ID string find & replace functionality
     add_filter( 'gform_get_form_filter', array( $this, 'gform_get_form_filter' ), 99999, 2 );
     add_filter( 'gform_confirmation', array( $this, 'gform_get_form_filter' ), 99999, 2 );
-    // add_filter( 'gform_post_render_script', array( $this, 'gform_post_render_script' ), 99999, 3 );
   }
 
   /**
@@ -64,7 +63,6 @@ class Gravity_Forms_Multiple_Form_Instances {
     // this is where we keep our unique ID
     $hidden_field = "<input type='hidden' name='gform_field_values'";
 
-    // define all occurrences of the original form ID that wont hurt the form input
     $strings = array(
       "gchoice_" . $form['id'] . '_'                                      => "gchoice_" . $random_id . '_',
       // "for='choice_"                                                      => "for='choice_" . $random_id . '_',
@@ -130,9 +128,10 @@ class Gravity_Forms_Multiple_Form_Instances {
       ' gform_wrapper'                                                    => ' gform_wrapper gform_wrapper_original_id_' . $form['id'],
       'gform.core.triggerPostRenderEvents( ' . $form['id']                => 'gform.core.triggerPostRenderEvents( ' . $random_id,
 
-
       '"formId":' .  $form['id'] . ','                                    => '"formId":' . $random_id . ',',
       '"#input_' .  $form['id'] . '_'                                     => '"#input_' .  $random_id . '_',
+
+      "data-formid='" . $form['id'] => "data-formid='" . $random_id,
     );
 
     // allow addons & plugins to add additional find & replace strings
@@ -145,12 +144,6 @@ class Gravity_Forms_Multiple_Form_Instances {
 
     return $form_string;
   }
-
-  // function gform_post_render_script( $script, $form_id, $current_page = 1 ) {
-  //   $script = str_ireplace( '&#038;&#038;', '&&', $script );
-
-  //   return $script;
-  // }
 
 }
 
